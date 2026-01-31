@@ -1,1 +1,52 @@
+import java.util.Scanner;
+
+public class SimpleCalculator {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        double screen = 0;
+        char op = '=';
+
+        System.out.println("Calculator (type exit to quit)");
+
+        while (true) {
+            System.out.print("> ");
+            String input = in.nextLine();
+
+            if (input.equalsIgnoreCase("exit")) {
+                break;
+            }
+
+            // operator input
+            if (input.equals("+") || input.equals("-") ||
+                input.equals("*") || input.equals("/") ||
+                input.equals("=")) {
+
+                op = input.charAt(0);
+            } 
+            // number input
+            else {
+                double num = Double.parseDouble(input);
+
+                if (op == '+') {
+                    screen += num;
+                } else if (op == '-') {
+                    screen -= num;
+                } else if (op == '*') {
+                    screen *= num;
+                } else if (op == '/') {
+                    screen /= num;
+                } else { // '=' or first number
+                    screen = num;
+                }
+            }
+
+            System.out.println("Screen: " + screen);
+        }
+
+        in.close();
+        System.out.println("Done.");
+    }
+}
 
