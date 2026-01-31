@@ -1,1 +1,44 @@
+import java.util.Random;
+
+public class DotProduct {
+    public static void main(String[] args) {
+
+        int n = 5;
+
+        int[] a = new int[n];
+        int[] b = new int[n];
+        int[] c = new int[n];
+
+        Random random = new Random();
+
+        // Fill arrays a and b with random values
+        for (int i = 0; i < n; i++) {
+            a[i] = random.nextInt(10);
+            b[i] = random.nextInt(10);
+        }
+
+        // Calculate c[i] = a[i] * b[i]
+        for (int i = 0; i < n; i++) {
+            c[i] = a[i] * b[i];
+        }
+
+        // Print array a
+        System.out.print("Array a: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(a[i] + " ");
+        }
+
+        // Print array b
+        System.out.print("\nArray b: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(b[i] + " ");
+        }
+
+        // Print array c
+        System.out.print("\nArray c: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(c[i] + " ");
+        }
+    }
+}
 
