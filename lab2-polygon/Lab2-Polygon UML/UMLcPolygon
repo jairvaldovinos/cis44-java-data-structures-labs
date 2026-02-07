@@ -1,0 +1,80 @@
+              +----------------+
+              |   Polygon      |<<interface>>
+              +----------------+
+              | +area():double |
+              | +perimeter():double |
+              +----------------+
+                     ^
+                     |
+        +------------+------------+
+        |                         |
+ +----------------+         +-----------------+
+ |  Triangle      |         | Quadrilateral   |
+ +----------------+         +-----------------+
+ | -a:double      |         | -a,b,c,d:double |
+ | -b:double      |         +-----------------+
+ | -c:double      |         | +area():double  |
+ +----------------+         | +perimeter():double |
+ | +area():double |         +-----------------+
+ | +perimeter():double |
+ +----------------+
+        ^
+        |
+ +----------------------+
+ | IsoscelesTriangle    |
+ +----------------------+
+ |                      |
+ +----------------------+
+ | +area():double       |
+ | +perimeter():double  |
+ +----------------------+
+        ^
+        |
+ +----------------------+
+ | EquilateralTriangle  |
+ +----------------------+
+ |                      |
+ +----------------------+
+ | +area():double       |
+ | +perimeter():double  |
+ +----------------------+
+
+Quadrilateral subclasses:
+        |
+ +-----------------+
+ | Rectangle       |
+ +-----------------+
+ | -length:double  |
+ | -width:double   |
+ +-----------------+
+ | +area():double  |
+ | +perimeter():double (inherited) |
+ +-----------------+
+        ^
+        |
+ +-----------------+
+ | Square          |
+ +-----------------+
+ |                 |
+ +-----------------+
+ | +area():double  |
+ | +perimeter():double (inherited) |
+ +-----------------+
+
+Regular Polygon hierarchy (all implement Polygon):
+ +---------------------+
+ | RegularPolygon      |
+ +---------------------+
+ | -sides:int          |
+ | -side:double        |
+ +---------------------+
+ | +area():double      |
+ | +perimeter():double |
+ +---------------------+
+        ^
+  +-----+-----+-----+
+  |           |     |
++------+   +------+ +------+
+|Pentagon| |Hexagon| |Octagon|
++------+   +------+ +------+
+
