@@ -1,1 +1,204 @@
+import java.util.Scanner;
+
+/* =======================
+   Polygon Interface
+   ======================= */
+interface Polygon {
+    double area();
+    double perimeter();
+}
+
+/* =======================
+   Triangle Classes
+   ======================= */
+class Triangle implements Polygon {
+    protected double a, b, c;
+
+    public Triangle(double a, double b, double c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    @Override
+    public double perimeter() {
+        return a + b + c;
+    }
+
+    @Override
+    public double area() {
+        double s = perimeter() / 2;
+        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
+    }
+}
+
+class IsoscelesTriangle extends Triangle {
+    public IsoscelesTriangle(double equalSide, double base) {
+        super(equalSide, equalSide, base);
+    }
+}
+
+class EquilateralTriangle extends IsoscelesTriangle {
+    public EquilateralTriangle(double side) {
+        super(side, side);
+    }
+}
+
+/* =======================
+   Quadrilateral Classes
+   ======================= */
+class Quadrilateral implements Polygon {
+    protected double a, b, c, d;
+
+    public Quadrilateral(double a, double b, double c, double d) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+    }
+
+    @Override
+    public double perimeter() {
+        return a + b + c + d;
+    }
+
+    @Override
+    public double area() {
+        return 0; // No general formula
+    }
+}
+
+class Rectangle extends Quadrilateral {
+    protected double length, width;
+
+    public Rectangle(double length, double width) {
+        super(length, width, length, width);
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    public double area() {
+        return length * width;
+    }
+}
+
+class Square extends Rectangle {
+    public Square(double side) {
+        super(side, side);
+    }
+}
+
+/* =======================
+   Regular Polygon Base
+   ======================= */
+class RegularPolygon implements Polygon {
+    protected int sides;
+    protected double side;
+
+    public RegularPolygon(int sides, double side) {
+        this.sides = sides;
+        this.side = side;
+    }
+
+    @Override
+    public double perimeter() {
+        return sides * side;
+    }
+
+    @Override
+    public double area() {
+        return (sides * side * side) /
+               (4 * Math.tan(Math.PI / sides));
+    }
+}
+
+class Pentagon extends RegularPolygon {
+    public Pentagon(double side) {
+        super(5, side);
+    }
+}
+
+class Hexagon extends RegularPolygon {
+    public Hexagon(double side) {
+        super(6, side);
+    }
+}
+
+class Octagon extends RegularPolygon {
+    public Octagon(double side) {
+        super(8, side);
+    }
+}
+
+/* =======================
+   Console UI
+   ======================= */
+public class PolygonCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Polygon polygon = null;
+
+        System.out.println("Choose a polygon:");
+        System.out.println("1. Equilateral Triangle");
+        System.out.println("2. Isosceles Triangle");
+        System.out.println("3. Rectangle");
+        System.out.println("4. Square");
+        System.out.println("5. Pentagon");
+        System.out.println("6. Hexagon");
+        System.out.println("7. Octagon");
+
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                System.out.print("Enter side length: ");
+                polygon = new EquilateralTriangle(scanner.nextDouble());
+                break;
+
+            case 2:
+                System.out.print("Enter equal side length: ");
+                double equalSide = scanner.nextDouble();
+                System.out.print("Enter base: ");
+                double base = scanner.nextDouble();
+                polygon = new IsoscelesTriangle(equalSide, base);
+                break;
+
+            case 3:
+                System.out.print("Enter length: ");
+                double length = scanner.nextDouble();
+                System.out.print("Enter width: ");
+                double width = scanner.nextDouble();
+                polygon = new Rectangle(length, width);
+                break;
+
+            case 4:
+                System.out.print("Enter side length: ");
+                polygon = new Square(scanner.nextDouble());
+                break;
+
+            case 5:
+                System.out.print("Enter side length: ");
+                polygon = new Pentagon(scanner.nextDouble());
+                break;
+
+            case 6:
+                System.out.print("Enter side length: ");
+                polygon = new Hexagon(scanner.nextDouble());
+                break;
+
+            case 7:
+                System.out.print("Enter side length: ");
+                polygon = new Octagon(scanner.nextDouble());
+                break;
+
+            default:
+                System.out.println("Invalid choice.");
+                return;
+        }
+
+        System.out.println("Perimeter: " + polygon.perimeter());
+        System.out.println("Area: " + polygon.area());
+    }
+}
 
