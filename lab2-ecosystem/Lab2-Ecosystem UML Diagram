@@ -1,0 +1,32 @@
+            +----------------+
+            |   Animal       |<<abstract>>
+            +----------------+
+            | - position:int |
+            +----------------+
+            | +getPosition() |
+            | +setPosition(int) |
+            | +toString():String |
+            +----------------+
+                   ^
+                   |
+        +----------+----------+
+        |                     |
+   +-----------+         +-----------+
+   |   Bear    |         |   Fish    |
+   +-----------+         +-----------+
+   |           |         |           |
+   +-----------+         +-----------+
+   | +toString()|        | +toString()|
+   +-----------+         +-----------+
+
+            +----------------+
+            |  Ecosystem     |
+            +----------------+
+            | - river: Animal[]|
+            | - random: Random|
+            +----------------+
+            | +Ecosystem(size:int, bears:int, fish:int) |
+            | +runStep() |
+            | +visualize() |
+            | +main(String[]) |
+            +----------------+
