@@ -3,14 +3,13 @@ public class Main {
 
         DynamicArray<Integer> arr = new DynamicArray<>();
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 1; i <= 12; i++) {
             arr.add(i);
         }
 
-        System.out.println("Size: " + arr.size());
-        System.out.println("Item at index 5: " + arr.get(5));
-
-        System.out.println("Removed: " + arr.remove(2));
+        System.out.println(arr.size());
+        System.out.println(arr.get(5));
+        System.out.println(arr.remove(2));
 
         for (int i = 0; i < arr.size(); i++) {
             System.out.println(arr.get(i));
