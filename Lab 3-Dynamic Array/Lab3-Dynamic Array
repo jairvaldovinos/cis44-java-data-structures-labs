@@ -1,22 +1,33 @@
 public class DynamicArray<T> {
 
+    // Internal array that stores the elements
     private T[] data;
+
+    // Number of elements currently in the array
     private int size;
+
+    // Starting capacity of the dynamic array
     private static final int INITIAL_CAPACITY = 10;
 
+    // Constructor: initializes the array with initial capacity
     public DynamicArray() {
         data = (T[]) new Object[INITIAL_CAPACITY];
         size = 0;
     }
 
+    // Adds an element to the end of the array
+    // If the array is full, resize() is called first
     public void add(T element) {
         if (size == data.length) {
-            resize();
+            resize(); // double the array capacity
         }
+
         data[size] = element;
         size++;
     }
 
+    // Returns the element at the given index
+    // Throws an exception if the index is invalid
     public T get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
@@ -24,6 +35,8 @@ public class DynamicArray<T> {
         return data[index];
     }
 
+    // Removes the element at the given index
+    // Shifts remaining elements to the left
     public T remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
@@ -31,6 +44,7 @@ public class DynamicArray<T> {
 
         T removed = data[index];
 
+        // Shift elements left to fill the gap
         for (int i = index; i < size - 1; i++) {
             data[i] = data[i + 1];
         }
@@ -39,16 +53,20 @@ public class DynamicArray<T> {
         return removed;
     }
 
+    // Doubles the capacity of the array when it becomes full
     private void resize() {
         T[] newData = (T[]) new Object[data.length * 2];
+
+        // Copy all existing elements into the new array
         for (int i = 0; i < size; i++) {
             newData[i] = data[i];
         }
+
         data = newData;
     }
 
+    // Returns the number of elements currently stored
     public int size() {
         return size;
     }
 }
-
