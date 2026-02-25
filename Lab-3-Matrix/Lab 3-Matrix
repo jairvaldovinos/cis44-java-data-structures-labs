@@ -1,17 +1,17 @@
 import java.util.Random;
 
 public class Matrix {
-    private int[][] data; // our matrix data
+    private int[][] data; // 2D array storing matrix elements
 
-    // Constructor: create an empty matrix with given dimensions
+    // Constructor: create an empty matrix with given dimensions (all elements initialized to 0)
     public Matrix(int rows, int cols) {
         if (rows <= 0 || cols <= 0) {
             throw new IllegalArgumentException("Rows and columns must be positive numbers.");
         }
-        data = new int[rows][cols]; // automatically initialized to 0
+        data = new int[rows][cols];
     }
 
-    // Constructor: create matrix from a pre-existing 2D array
+    // Constructor: create a matrix by copying an existing 2D array
     public Matrix(int[][] data) {
         if (data == null || data.length == 0 || data[0].length == 0) {
             throw new IllegalArgumentException("Data array can't be null or empty.");
@@ -25,11 +25,11 @@ public class Matrix {
             if (data[i].length != cols) {
                 throw new IllegalArgumentException("All rows must have the same number of columns.");
             }
-            System.arraycopy(data[i], 0, this.data[i], 0, cols);
+            System.arraycopy(data[i], 0, this.data[i], 0, cols); // copy row data
         }
     }
 
-    // Fill the matrix with random numbers between 1 and 10
+    // Fill the matrix with random integers from 1 to 10
     public void populateRandom() {
         Random rand = new Random();
         for (int i = 0; i < data.length; i++) {
@@ -39,7 +39,8 @@ public class Matrix {
         }
     }
 
-    // Add another matrix to this one
+    // Add this matrix to another matrix and return the result
+    // Throws exception if dimensions do not match
     public Matrix add(Matrix other) {
         if (other == null) {
             throw new IllegalArgumentException("Other matrix can't be null.");
@@ -52,6 +53,7 @@ public class Matrix {
         int cols = data[0].length;
         int[][] result = new int[rows][cols];
 
+        // element-wise addition
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 result[i][j] = this.data[i][j] + other.data[i][j];
@@ -61,7 +63,8 @@ public class Matrix {
         return new Matrix(result);
     }
 
-    // Multiply this matrix by another matrix
+    // Multiply this matrix by another matrix and return the result
+    // Throws exception if dimensions are incompatible
     public Matrix multiply(Matrix other) {
         if (other == null) {
             throw new IllegalArgumentException("Other matrix can't be null.");
@@ -80,6 +83,7 @@ public class Matrix {
 
         int[][] result = new int[rowsA][colsB];
 
+        // standard matrix multiplication
         for (int i = 0; i < rowsA; i++) {
             for (int j = 0; j < colsB; j++) {
                 for (int k = 0; k < colsA; k++) {
@@ -91,13 +95,13 @@ public class Matrix {
         return new Matrix(result);
     }
 
-    // Nicely print the matrix
+    // Return a nicely formatted string representing the matrix
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int[] row : data) {
             for (int val : row) {
-                sb.append(String.format("%4d", val)); // aligned numbers
+                sb.append(String.format("%4d", val)); // align numbers
             }
             sb.append("\n");
         }
