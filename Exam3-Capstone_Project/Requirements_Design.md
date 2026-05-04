@@ -8,31 +8,19 @@ In some systems, tasks shouldn’t be done in the order they come in. Instead, t
 
 ## Design Choice
 
-For this, I chose a Max-Heap. The reason is simple: a Max-Heap always keeps the highest value at the top. That means the most important task is always easy to access and remove.
+To solve this problem, I chose to use a Max-Heap. A Max-Heap is useful because it always keeps the highest value at the top. This means the most important task is always easy to access and remove without having to search through everything.
 
 
 
 ## Trade-Off
 
-I thought about just using a regular list, but that has a problem.
-
-* **List/Array**
-
-  * Easy to add items (O(1))
-  * Hard to find the highest priority (O(n))
-
-* **Max-Heap**
-
-  * Adding takes O(log n)
-  * Removing highest also takes O(log n)
-
-So even though the heap is a little slower to insert, it saves time overall because it doesn’t need to search through everything.
+I considered using a regular list or array, since it is very simple and allows tasks to be added quickly. However, the downside is that finding the highest-priority task would require checking every element, which takes O(n) time. In contrast, a Max-Heap takes a bit more work when adding elements, since it needs to maintain its structure, but it allows both inserting and removing the highest-priority task in O(log n) time. Even though insertion is slightly slower, the overall performance is better because it avoids repeatedly scanning the entire list.
 
 
 
 ## Big-O Justification
 
-The Max-Heap works well here because it keeps things efficient. Adding a task takes O(log n) since the heap has to reorder itself. Removing the highest-priority task also takes O(log n). Looking at the top task is O(1) because it’s always at the front. This makes it a good fit for a system where tasks are constantly being added and removed.
+The Max-Heap is efficient for this type of scheduling problem. Adding a task takes O(log n) time because the heap needs to reorder itself to maintain its structure. Removing the highest-priority task also takes O(log n) for the same reason. However, accessing the highest-priority task is very fast at O(1), since it is always stored at the top of the heap. This balance of efficiency makes the Max-Heap a good choice for systems where tasks are constantly being added and processed.
 
 
 
