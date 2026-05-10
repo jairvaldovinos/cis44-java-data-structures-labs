@@ -19,7 +19,7 @@ public class Main {
                 + map.put(2, "E"));
 
         System.out.println("get(7): "
-                + map.get(7"));
+                + map.get(7));
 
         System.out.println("remove(5): "
                 + map.remove(5));
